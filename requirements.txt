@@ -1,0 +1,6 @@
+streamlit==1.31.1
+pandas==2.1.4
+plotly==5.18.0
+python-pptx==0.6.21
+openpyxl==3.1.2
+kaleido==0.2.1  # Necessário para salvar gráficos plotly como imagens 
