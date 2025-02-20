@@ -1,4 +1,4 @@
-# Dashboard de Empregabilidade - Einstein
+# Dashboard de Empregabilidade
 
 ## 📊 Sobre o Projeto
 Dashboard desenvolvido para análise de empregabilidade dos alunos do Einstein. O sistema permite visualizar métricas importantes, gráficos interativos e exportar dados em diferentes formatos.
@@ -81,4 +81,4 @@ Contribuições são bem-vindas! Sinta-se à vontade para:
 3. Enviar pull requests
 
 ---
-Desenvolvido com ❤️ para o Einstein
+Desenvolvido por Bruno Monteiro
