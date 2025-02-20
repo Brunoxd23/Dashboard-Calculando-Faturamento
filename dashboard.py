@@ -116,7 +116,7 @@ filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#56c322",endCo
         /* Estilo para o expander */
         .st-emotion-cache-1h9usn1 {
             margin-bottom: 0px;
-            margin-top: 2px !important;  /* Espaçamento superior ajustado */
+            margin-top: 25px !important;  /* Espaçamento superior ajustado */
             width: 100%;
             border-style: solid;
             border-width: 2px !important;  /* Borda mais grossa */
