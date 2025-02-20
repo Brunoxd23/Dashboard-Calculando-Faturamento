@@ -52,6 +52,42 @@ python-pptx==0.6.21
 openpyxl==3.1.2
 kaleido==0.2.1
 
+# Instalação das dependências na AWS
+
+python3 -m venv venv
+source venv/bin/activate
+
+# 1. Atualize o sistema
+sudo yum update -y
+
+# 2. Instale o Python e pip
+sudo yum install python3 python3-pip -y
+
+# 3. Instale o git
+sudo yum install git -y
+
+# 4. Clone seu repositório
+git clone https://github.com/Brunoxd23/Dashboard-Calculando-Faturamento.git
+cd Dashboard-Calculando-Faturamento
+
+# 5. Instale as dependências
+pip3 install -r requirements.txt
+
+# 6. Instale o Streamlit
+pip3 install streamlit
+
+# 7. Instale e use o tmux para manter o dashboard rodando
+sudo yum install tmux -y
+tmux new -s dashboard
+
+# 8. Dentro da sessão tmux, execute o dashboard
+streamlit run dashboard.py --server.port 8501 --server.address 0.0.0.0
+source venv/bin/activate
+
+# 9. Puxe as atualizações do GitHub
+git pull origin main
+
+
 ## 🖥️ Uso
 
 1. Selecione a turma desejada no dropdown
