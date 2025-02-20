@@ -680,6 +680,6 @@ except Exception as e:
     st.error(f"❌ Erro ao processar os dados: {str(e)}")
     st.write("Detalhes do erro:", e.__class__.__name__)
 
-# Adicionar footer
+# Corrigir o footer no final do arquivo
 st.markdown("---")
 st.markdown("Dashboard desenvolvido com Streamlit por Bruno Monteiro")
