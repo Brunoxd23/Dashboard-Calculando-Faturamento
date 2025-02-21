@@ -25,7 +25,7 @@ st.markdown("""
         .fullscreen .block-container,
         [data-testid="stAppViewContainer"],
         [data-testid="stHeader"] {
-            background-color: #0B1229;
+            background-color: #ffffff;
         }
 
         /* Estilo para os gráficos em fullscreen */
