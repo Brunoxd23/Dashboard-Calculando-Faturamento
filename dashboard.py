@@ -126,6 +126,19 @@ st.markdown("""
             border-color: rgba(255, 255, 255, 1) !important;
             background-color: rgba(255, 255, 255, 0.1) !important;
         }
+        /* svg ViewBox */
+        .st-emotion-cache-1b2ybts {
+        vertical-align: middle;
+        overflow: hidden;
+        fill: rgb(0 0 0);
+        display: inline-flex;
+        -webkit-box-align: center;
+        align-items: center;
+        font-size: 2.25rem;
+        width: 1.25rem;
+        height: 1.25rem;
+        flex-shrink: 0;
+}
     </style>
 """, unsafe_allow_html=True)
 
