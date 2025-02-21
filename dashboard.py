@@ -156,7 +156,7 @@ st.markdown("""
 
 # Inserindo o título dentro do header
 st.markdown(
-    '<div class="custom-header">🎓 Dashboard</div>',
+    '<div data-testid="stHeader"><div class="custom-header">🎓 Dashboard</div></div>',
     unsafe_allow_html=True
 )
 
