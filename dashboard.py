@@ -87,7 +87,7 @@ st.markdown("""
 
         /* Gradiente de fundo para todo o dashboard */
         [data-testid="stAppViewContainer"] {
-            background: linear-gradient(90deg, rgba(2,101,12,1) 0%, rgba(73,175,17,1) 35%, rgba(27,50,195,1) 100%) !important;
+            background-color: #0B1229;
         }
         
         /* Container dos gráficos */
