@@ -25,11 +25,7 @@ st.markdown("""
         .fullscreen .block-container,
         [data-testid="stAppViewContainer"],
         [data-testid="stHeader"] {
-            background: rgb(86,195,34);
-background: -moz-radial-gradient(circle, rgba(86,195,34,1) 0%, rgba(0,71,136,1) 100%);
-background: -webkit-radial-gradient(circle, rgba(86,195,34,1) 0%, rgba(0,71,136,1) 100%);
-background: radial-gradient(circle, rgba(86,195,34,1) 0%, rgba(0,71,136,1) 100%);
-filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#56c322",endColorstr="#004788",GradientType=1);
+            background-color: #0B1229;
         }
 
         /* Estilo para os gráficos em fullscreen */
