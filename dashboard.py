@@ -20,14 +20,25 @@ st.set_page_config(
 # CSS para tema escuro e fullscreen
 st.markdown("""
     <style>
-        /* Tema escuro para o modo normal e fullscreen */
-        .main .block-container,
-        .fullscreen .block-container,
-        [data-testid="stAppViewContainer"],
+          /* Estilizando o header */
         [data-testid="stHeader"] {
-            background-color: #ffffff;
-            <div class='main-title'>🎓 Dashboard</div>")
+            background-color: #ffffff !important;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 60px;
+            border-bottom: 2px solid #ddd;
         }
+
+        /* Adicionando o título dentro do header */
+        .custom-header {
+            font-size: 24px;
+            font-weight: bold;
+            text-align: center;
+            color: #333;
+        }
+
+        
 
         /* Estilo para os gráficos em fullscreen */
         .element-container.css-1e5imcs.e1tzin5v1 {
@@ -142,6 +153,12 @@ st.markdown("""
 }
     </style>
 """, unsafe_allow_html=True)
+
+# Inserindo o título dentro do header
+st.markdown(
+    '<div class="custom-header">🎓 Dashboard</div>',
+    unsafe_allow_html=True
+)
 
 # Função para criar apresentação PPT
 def create_ppt(dados, turma_selecionada):
