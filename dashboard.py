@@ -26,6 +26,7 @@ st.markdown("""
         [data-testid="stAppViewContainer"],
         [data-testid="stHeader"] {
             background-color: #ffffff;
+            st.markdown("<div class='main-title'>🎓 Dashboard</div>", unsafe_allow_html=True)
         }
 
         /* Estilo para os gráficos em fullscreen */
@@ -376,7 +377,7 @@ def calculate_metrics(df, turma):
         }
 
 # Título principal
-st.markdown("<div class='main-title'>🎓 Dashboard de Empregabilidade - Einstein</div>", unsafe_allow_html=True)
+st.markdown("<div class='main-title'>Empregabilidade - Einstein</div>", unsafe_allow_html=True)
 
 # Seletor de turma com estilo atualizado
 turma_selecionada = st.selectbox(
