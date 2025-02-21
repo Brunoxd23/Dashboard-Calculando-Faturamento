@@ -26,7 +26,7 @@ st.markdown("""
         [data-testid="stAppViewContainer"],
         [data-testid="stHeader"] {
             background-color: #ffffff;
-            st.markdown("<div class='main-title'>🎓 Dashboard</div>", unsafe_allow_html=True)
+            <div class='main-title'>🎓 Dashboard</div>")
         }
 
         /* Estilo para os gráficos em fullscreen */
