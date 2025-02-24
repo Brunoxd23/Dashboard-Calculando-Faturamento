@@ -81,7 +81,8 @@ pip3 install -r requirements.txt
 pip3 install streamlit
 
 # 7. Instale e use o tmux para manter o dashboard rodando
-sudo yum install tmux -y depois 
+sudo yum install tmux -y
+
 tmux new -s dashboard
 
 Anexar a uma sessão existente:
