@@ -1,7 +1,7 @@
 # Dashboard de Empregabilidade
 
 ## 📊 Sobre o Projeto
-Dashboard desenvolvido para análise de empregabilidade dos alunos do Einstein. O sistema permite visualizar métricas importantes, gráficos interativos e exportar dados em diferentes formatos.
+Dashboard desenvolvido para análise de empregabilidade dos alunos. O sistema permite visualizar métricas importantes, gráficos interativos e exportar dados em diferentes formatos.
 
 ## 🚀 Funcionalidades
 
@@ -67,7 +67,7 @@ sudo yum install python3 python3-pip -y
 sudo yum install git -y
 
 # 4. Clone seu repositório
-git clone https://github.com/Brunoxd23/Dashboard-Calculando-Faturamento.git
+git clone https://github.com/Brunoxd23/Dashboard-Empregabilidade-Ensino.git
 cd Dashboard-Calculando-Faturamento
 
 # 5. Instale as dependências
