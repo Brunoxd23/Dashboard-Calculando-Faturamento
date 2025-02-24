@@ -25,7 +25,11 @@ st.markdown("""
         .fullscreen .block-container,
         [data-testid="stAppViewContainer"],
         [data-testid="stHeader"] {
+<<<<<<< HEAD
             background: black !important;
+=======
+            background-color: #ffffff;
+>>>>>>> 7bba163e262d012d108a3b3906c4d33f14f265b5
         }
 
         /* Estilo para os gráficos em fullscreen */
@@ -87,7 +91,11 @@ st.markdown("""
 
         /* Gradiente de fundo para todo o dashboard */
         [data-testid="stAppViewContainer"] {
+<<<<<<< HEAD
             background: black !important;
+=======
+            background-color: #0B1229;
+>>>>>>> 7bba163e262d012d108a3b3906c4d33f14f265b5
         }
         
         /* Container dos gráficos */
@@ -126,6 +134,19 @@ st.markdown("""
             border-color: rgba(255, 255, 255, 1) !important;
             background-color: rgba(255, 255, 255, 0.1) !important;
         }
+        /* svg ViewBox */
+        .st-emotion-cache-1b2ybts {
+        vertical-align: middle;
+        overflow: hidden;
+        fill: rgb(0 0 0);
+        display: inline-flex;
+        -webkit-box-align: center;
+        align-items: center;
+        font-size: 2.25rem;
+        width: 1.25rem;
+        height: 1.25rem;
+        flex-shrink: 0;
+}
     </style>
 """, unsafe_allow_html=True)
 
