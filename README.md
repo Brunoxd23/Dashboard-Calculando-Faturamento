@@ -72,7 +72,7 @@ sudo yum install git -y
 
 # 4. Clone seu repositório
 git clone https://github.com/Brunoxd23/Dashboard-Empregabilidade-Ensino.git
-cd Dashboard-Calculando-Faturamento
+cd Dashboard-Empregabilidade-Ensino
 
 # 5. Instale as dependências
 pip3 install -r requirements.txt
