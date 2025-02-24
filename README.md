@@ -54,6 +54,10 @@ kaleido==0.2.1
 
 # Instalação das dependências na AWS
 
+mkdir meu_projeto
+
+CD meu_projeto
+
 python3 -m venv venv
 source venv/bin/activate
 
