@@ -81,9 +81,19 @@ pip3 install -r requirements.txt
 pip3 install streamlit
 
 # 7. Instale e use o tmux para manter o dashboard rodando
-sudo yum install tmux -y
+sudo yum install tmux -y depois 
 tmux new -s dashboard
 
+Anexar a uma sessão existente:
+
+tmux attach-session -t dashboard
+
+Listar sessões ativas:
+
+tmux list-sessions
+
+Sair do tmux sem fechar a sessão:
+Pressione Ctrl + B, depois D.
 # 8. Dentro da sessão tmux, execute o dashboard
 streamlit run dashboard.py --server.port 8501 --server.address 0.0.0.0
 source venv/bin/activate
