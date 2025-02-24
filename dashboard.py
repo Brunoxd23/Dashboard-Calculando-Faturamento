@@ -91,11 +91,7 @@ st.markdown("""
 
         /* Gradiente de fundo para todo o dashboard */
         [data-testid="stAppViewContainer"] {
-<<<<<<< HEAD
             background: black !important;
-=======
-            background-color: #0B1229;
->>>>>>> 7bba163e262d012d108a3b3906c4d33f14f265b5
         }
         
         /* Container dos gráficos */
@@ -115,6 +111,7 @@ st.markdown("""
             font-weight: bold;
             margin-bottom: 20px;
             text-align: center;
+            margin-top: -48px;
         }
 
         /* Estilo para o expander */
