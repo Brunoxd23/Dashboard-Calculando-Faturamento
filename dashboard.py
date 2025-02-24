@@ -25,11 +25,7 @@ st.markdown("""
         .fullscreen .block-container,
         [data-testid="stAppViewContainer"],
         [data-testid="stHeader"] {
-            background: rgb(86,195,34);
-background: -moz-radial-gradient(circle, rgba(86,195,34,1) 0%, rgba(0,71,136,1) 100%);
-background: -webkit-radial-gradient(circle, rgba(86,195,34,1) 0%, rgba(0,71,136,1) 100%);
-background: radial-gradient(circle, rgba(86,195,34,1) 0%, rgba(0,71,136,1) 100%);
-filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#56c322",endColorstr="#004788",GradientType=1);
+            background: black !important;
         }
 
         /* Estilo para os gráficos em fullscreen */
@@ -91,25 +87,25 @@ filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#56c322",endCo
 
         /* Gradiente de fundo para todo o dashboard */
         [data-testid="stAppViewContainer"] {
-            background: linear-gradient(90deg, rgba(2,101,12,1) 0%, rgba(73,175,17,1) 35%, rgba(27,50,195,1) 100%) !important;
+            background: black !important;
         }
         
         /* Container dos gráficos */
         .chart-container {
-            background: rgb(11, 18, 41);
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: 15px;
             padding: 20px;
             margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
         }
         
         /* Título dentro do container */
         .chart-title {
             color: white;
-            font-size: 24px;
+            font-size: 18px;
             font-weight: bold;
             margin-bottom: 20px;
-            padding-left: 25px;
-            margin-top: -50px;
             text-align: center;
         }
 
@@ -438,241 +434,310 @@ try:
                     </div>
                 """, unsafe_allow_html=True)
 
-            # Gráficos em containers estilizados
-            st.markdown("<div style='height: 30px'></div>", unsafe_allow_html=True)
-            
-    col1, col2 = st.columns(2)
-    
-    with col1:
-        st.markdown("<div class='chart-container'>", unsafe_allow_html=True)
-        st.markdown("<div class='chart-title'>Evolução da Empregabilidade</div>", unsafe_allow_html=True)
-        
-        # Gráfico de barras com linha de tendência
-        fig_evolucao = go.Figure()
-        
-        meses = ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez']
-        valores = [
-            dados['empregados']-8, 
-            dados['empregados']-7,
-            dados['empregados']-6,
-            dados['empregados']-5,
-            dados['empregados']-4,
-            dados['empregados']-3,
-            dados['empregados']-2,
-            dados['empregados']-1,
-            dados['empregados'],
-            dados['empregados'],
-            dados['empregados'],
-            dados['empregados']
-        ]
-        
-        # Adiciona barras e linha de tendência
-        fig_evolucao.add_trace(go.Bar(
-            x=meses,
-            y=valores,
-            name='Alunos Empregados',
-            marker_color='rgba(67, 233, 123, 0.7)',
-            hovertemplate='Mês: %{x}<br>Empregados: %{y}<extra></extra>'
-        ))
-        
-        fig_evolucao.add_trace(go.Scatter(
-            x=meses,
-            y=valores,
-            name='Tendência',
-            line=dict(color='#fff', width=3),
-            mode='lines',
-            hovertemplate='Tendência: %{y}<extra></extra>'
-        ))
-        
-        # Layout do gráfico de evolução
-        fig_evolucao.update_layout(
-            title=None,
-            paper_bgcolor='rgb(11, 18, 41)',
-            plot_bgcolor='rgb(11, 18, 41)',
-            font=dict(color='white', size=14),
-            showlegend=True,
-            legend=dict(
-                orientation="h",
-                yanchor="bottom",
-                y=1.02,
-                xanchor="right",
-                x=1,
-                font=dict(color='white')
-            ),
-            xaxis=dict(
-                showgrid=False,
-                tickfont=dict(color='white')
-            ),
-            yaxis=dict(
-                showgrid=True,
-                gridcolor='rgba(255,255,255,0.1)',
-                tickfont=dict(color='white')
-            ),
-            autosize=False,
-            width=800,
-            height=500,
-            margin=dict(l=50, r=50, t=80, b=50)
-        )
-        
-        st.plotly_chart(fig_evolucao, use_container_width=True, config={
-            'responsive': True,
-            'displayModeBar': True,
-            'displaylogo': False,
-            'modeBarButtonsToAdd': ['zoom', 'pan', 'select', 'zoomIn', 'zoomOut', 'autoScale', 'resetScale'],
-            'toImageButtonOptions': {
-                'format': 'png',
-                'filename': f'evolucao_{turma_selecionada}',
-                'height': 500,
-                'width': 800,
-                'scale': 2,
-                'backgroundColor': 'rgb(11, 18, 41)'
-            }
-        })
-        st.markdown("</div>", unsafe_allow_html=True)
-    
-    with col2:
-        st.markdown("<div class='chart-container'>", unsafe_allow_html=True)
-        st.markdown("<div class='chart-title'>Distribuição por Instituição</div>", unsafe_allow_html=True)
-        
-        # Gráfico de distribuição por instituição
-        fig_dist = go.Figure()
-        
-        labels = ['Einstein', 'Outras Instituições', 'Não Empregados']
-        values = [dados['einstein'], dados['outras'], dados['nao_empregados']]
-        
-        fig_dist.add_trace(go.Pie(
-            labels=labels,
-            values=values,
-            hole=.7,
-            marker=dict(
-                colors=['#4158D0', '#C850C0', '#FFCC70']
-            ),
-            textfont=dict(color='white', size=14),
-            hoverinfo='label+percent+value',
-            textinfo='percent+label',
-            textposition='outside',
-            showlegend=False
-        ))
-        
-        # Layout do gráfico de distribuição
-        fig_dist.update_layout(
-            title=None,
-            paper_bgcolor='rgb(11, 18, 41)',
-            plot_bgcolor='rgb(11, 18, 41)',
-            font=dict(color='white', size=14),
-            autosize=False,
-            width=800,
-            height=500,
-            margin=dict(l=50, r=50, t=80, b=50),
-            hoverlabel=dict(
-                bgcolor='rgba(0,0,0,0.8)',
-                font=dict(color='white')
-            )
-        )
-        
-        st.plotly_chart(fig_dist, use_container_width=True, config={
-            'responsive': True,
-            'displayModeBar': True,
-            'displaylogo': False,
-            'modeBarButtonsToAdd': ['zoom', 'pan', 'select', 'zoomIn', 'zoomOut', 'autoScale', 'resetScale'],
-            'toImageButtonOptions': {
-                'format': 'png',
-                'filename': f'distribuicao_{turma_selecionada}',
-                'height': 500,
-                'width': 800,
-                'scale': 2,
-                'backgroundColor': 'rgb(11, 18, 41)'
-            }
-        })
-        st.markdown("</div>", unsafe_allow_html=True)
+            # Layout com 4 gráficos
+            col1, col2 = st.columns(2)
 
-    # Indicadores de Performance em cards modernos
-    st.markdown("""
-        <div style='
-            display: flex;
-            justify-content: space-between;
-            margin-top: 30px;
-            gap: 20px;
-        '>
-            <div style='
-                background: linear-gradient(135deg, #4158D0 0%, #C850C0 100%);
-                border-radius: 15px;
-                padding: 20px;
-                flex: 1;
-                text-align: center;
-                color: white;
-            '>
-                <h3 style='font-size: 16px; margin: 0;'>Taxa de Empregabilidade</h3>
-                <h2 style='font-size: 28px; margin: 10px 0;'>{:.1f}%</h2>
-                <p style='margin: 0; font-size: 14px;'>{} de {} alunos</p>
-            </div>
-            <div style='
-                background: linear-gradient(135deg, #00B4DB 0%, #0083B0 100%);
-                border-radius: 15px;
-                padding: 20px;
-                flex: 1;
-                text-align: center;
-                color: white;
-            '>
-                <h3 style='font-size: 16px; margin: 0;'>Taxa Einstein</h3>
-                <h2 style='font-size: 28px; margin: 10px 0;'>{:.1f}%</h2>
-                <p style='margin: 0; font-size: 14px;'>{} contratados</p>
-            </div>
-            <div style='
-                background: linear-gradient(135deg, #FF416C 0%, #FF4B2B 100%);
-                border-radius: 15px;
-                padding: 20px;
-                flex: 1;
-                text-align: center;
-                color: white;
-            '>
-                <h3 style='font-size: 16px; margin: 0;'>Não Empregados</h3>
-                <h2 style='font-size: 28px; margin: 10px 0;'>{:.1f}%</h2>
-                <p style='margin: 0; font-size: 14px;'>{} alunos</p>
-            </div>
-        </div>
-    """.format(
-        (dados['empregados']/dados['total_alunos']*100),
-        dados['empregados'],
-        dados['total_alunos'],
-        (dados['einstein']/dados['total_alunos']*100),
-        dados['einstein'],
-        (dados['nao_empregados']/dados['total_alunos']*100),
-        dados['nao_empregados']
-    ), unsafe_allow_html=True)
-    
-    # Dados detalhados em um expander
-    with st.expander(f"Ver Dados Detalhados - {turma_selecionada}", True):
-        st.dataframe(df)
-        
-        # Botões de download
-        col1, col2 = st.columns(2)
-        
-        with col1:
-            # Botão de download CSV
-            csv = df.to_csv(index=False).encode('utf-8')
-            st.download_button(
-                "📥 Download dos Dados (CSV)",
-                csv,
-                f"dados_{turma_selecionada.lower().replace(' ', '_')}.csv",
-                "text/csv",
-                key='download-csv',
-                help="Clique para baixar os dados em formato CSV",
-                use_container_width=True
-            )
-        
-        with col2:
-            # Botão de download PPT
-            ppt_buffer = create_ppt(dados, turma_selecionada)
-            st.download_button(
-                "🎯 Download Apresentação (PPT)",
-                ppt_buffer,
-                f"apresentacao_{turma_selecionada.lower().replace(' ', '_')}.pptx",
-                "application/vnd.openxmlformats-officedocument.presentationml.presentation",
-                key='download-ppt',
-                help="Clique para baixar a apresentação em PowerPoint",
-                use_container_width=True
-            )
+            with col1:
+                st.markdown("<div class='chart-container'>", unsafe_allow_html=True)
+                st.markdown("<div class='chart-title'>Evolução da Empregabilidade por Mês</div>", unsafe_allow_html=True)
+                
+                # Gráfico de barras vertical (similar ao da imagem)
+                fig_evolucao = go.Figure()
+                
+                meses = ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun']
+                valores = [
+                    dados['empregados']-5,
+                    dados['empregados']-4,
+                    dados['empregados']-3,
+                    dados['empregados']-2,
+                    dados['empregados']-1,
+                    dados['empregados']
+                ]
+                
+                fig_evolucao.add_trace(go.Bar(
+                    x=meses,
+                    y=valores,
+                    marker_color='#4158D0',  # Cor do primeiro card
+                    marker=dict(
+                        color=valores,
+                        colorscale=[[0, '#4158D0'], [1, '#C850C0']],  # Gradiente como no card
+                    )
+                ))
+                
+                fig_evolucao.update_layout(
+                    paper_bgcolor='rgba(0,0,0,0)',
+                    plot_bgcolor='rgba(0,0,0,0)',
+                    font=dict(color='white', size=12),
+                    showlegend=False,
+                    xaxis=dict(
+                        showgrid=False,
+                        showline=True,
+                        linecolor='rgba(255,255,255,0.2)',
+                        tickfont=dict(color='white')
+                    ),
+                    yaxis=dict(
+                        showgrid=True,
+                        gridcolor='rgba(255,255,255,0.1)',
+                        showline=True,
+                        linecolor='rgba(255,255,255,0.2)',
+                        tickfont=dict(color='white')
+                    ),
+                    margin=dict(l=50, r=20, t=30, b=50)
+                )
+                st.plotly_chart(fig_evolucao, use_container_width=True)
+
+            with col2:
+                st.markdown("<div class='chart-container'>", unsafe_allow_html=True)
+                st.markdown("<div class='chart-title'>Distribuição por Instituição</div>", unsafe_allow_html=True)
+                
+                # Gráfico de pizza tradicional
+                fig_dist = go.Figure()
+                
+                labels = ['Einstein', 'Outras Instituições', 'Não Empregados']
+                values = [dados['einstein'], dados['outras'], dados['nao_empregados']]
+                
+                fig_dist.add_trace(go.Pie(
+                    labels=labels,
+                    values=values,
+                    hole=0.4,  # Adicionando um pequeno hole para efeito visual
+                    marker=dict(
+                        colors=['#4158D0', '#00B4DB', '#FF416C'],  # Cores dos cards
+                    ),
+                    textinfo='percent',
+                    textposition='inside',
+                    textfont=dict(color='white', size=14)
+                ))
+                
+                fig_dist.update_layout(
+                    paper_bgcolor='rgba(0,0,0,0)',
+                    plot_bgcolor='rgba(0,0,0,0)',
+                    font=dict(color='white', size=12),
+                    showlegend=True,
+                    legend=dict(
+                        orientation="h",
+                        y=-0.2,
+                        x=0.5,
+                        xanchor="center",
+                        font=dict(color='white')
+                    )
+                )
+                st.plotly_chart(fig_dist, use_container_width=True)
+
+            # Segunda linha de gráficos
+            col3, col4 = st.columns(2)
+
+            with col3:
+                st.markdown("<div class='chart-container'>", unsafe_allow_html=True)
+                st.markdown("<div class='chart-title'>Empregabilidade por Instituição</div>", unsafe_allow_html=True)
+                
+                # Gráfico de barras horizontal
+                fig_inst = go.Figure()
+                
+                instituicoes = ['Einstein', 'Outras Inst.', 'Não Empreg.']
+                valores = [dados['einstein'], dados['outras'], dados['nao_empregados']]
+                
+                fig_inst.add_trace(go.Bar(
+                    y=instituicoes,
+                    x=valores,
+                    orientation='h',
+                    marker=dict(
+                        color=valores,
+                        colorscale=[[0, '#00B4DB'], [1, '#0083B0']],  # Gradiente como no segundo card
+                    )
+                ))
+                
+                fig_inst.update_layout(
+                    paper_bgcolor='rgba(0,0,0,0)',
+                    plot_bgcolor='rgba(0,0,0,0)',
+                    font=dict(color='white', size=12),
+                    showlegend=False,
+                    xaxis=dict(
+                        showgrid=True,
+                        gridcolor='rgba(255,255,255,0.1)',
+                        showline=True,
+                        linecolor='rgba(255,255,255,0.2)',
+                        tickfont=dict(color='white')
+                    ),
+                    yaxis=dict(
+                        showgrid=False,
+                        showline=True,
+                        linecolor='rgba(255,255,255,0.2)',
+                        tickfont=dict(color='white')
+                    )
+                )
+                st.plotly_chart(fig_inst, use_container_width=True)
+
+            with col4:
+                st.markdown("<div class='chart-container'>", unsafe_allow_html=True)
+                st.markdown("<div class='chart-title'>Meta de Empregabilidade</div>", unsafe_allow_html=True)
+                
+                # Gráfico de medidor (gauge) atualizado
+                fig_meta = go.Figure()
+                
+                taxa_empregabilidade = (dados['empregados'] / dados['total_alunos']) * 100
+                
+                # Definir cores baseadas no valor
+                if taxa_empregabilidade >= 75:
+                    cor_indicador = "#00FF00"  # Verde brilhante
+                    cor_steps = [
+                        [0, 'rgba(65, 88, 208, 0.2)'],
+                        [0.75, 'rgba(65, 88, 208, 0.5)'],
+                        [0.9, 'rgba(0, 255, 0, 0.6)']
+                    ]
+                else:
+                    cor_indicador = "#4158D0"  # Azul padrão
+                    cor_steps = [
+                        [0, 'rgba(65, 88, 208, 0.2)'],
+                        [0.5, 'rgba(65, 88, 208, 0.5)'],
+                        [0.75, 'rgba(65, 88, 208, 0.8)']
+                    ]
+
+                fig_meta.add_trace(go.Indicator(
+                    mode="gauge+number",
+                    value=taxa_empregabilidade,
+                    title={
+                        'text': "Meta de Empregabilidade",
+                        'font': {'color': 'white', 'size': 24}
+                    },
+                    number={
+                        'font': {'color': 'white', 'size': 40},
+                        'suffix': "%"
+                    },
+                    gauge={
+                        'axis': {
+                            'range': [0, 100],
+                            'tickcolor': "white",
+                            'tickwidth': 1,
+                            'ticklen': 10,
+                            'tickfont': {'color': 'white'}
+                        },
+                        'bar': {'color': cor_indicador, 'thickness': 0.8},
+                        'bgcolor': "black",
+                        'borderwidth': 2,
+                        'bordercolor': "white",
+                        'steps': [
+                            {'range': [0, 50], 'color': 'rgba(65, 88, 208, 0.2)'},
+                            {'range': [50, 75], 'color': 'rgba(65, 88, 208, 0.4)'},
+                            {'range': [75, 100], 'color': 'rgba(0, 255, 0, 0.1)'}
+                        ],
+                        'threshold': {
+                            'line': {'color': "white", 'width': 2},
+                            'thickness': 0.8,
+                            'value': 80
+                        }
+                    }
+                ))
+                
+                fig_meta.update_layout(
+                    paper_bgcolor='rgba(0,0,0,0)',
+                    font=dict(color='white'),
+                    margin=dict(l=20, r=20, t=50, b=20),
+                    height=400
+                )
+                
+                # Adicionar um efeito de brilho ao container quando a meta for atingida
+                if taxa_empregabilidade >= 75:
+                    st.markdown("""
+                        <style>
+                            [data-testid="stMetric"] {
+                                box-shadow: 0 0 20px rgba(0, 255, 0, 0.3);
+                                transition: all 0.3s ease;
+                            }
+                            [data-testid="stMetric"]:hover {
+                                box-shadow: 0 0 30px rgba(0, 255, 0, 0.5);
+                            }
+                        </style>
+                    """, unsafe_allow_html=True)
+
+                st.plotly_chart(fig_meta, use_container_width=True)
+
+            # Indicadores de Performance em cards modernos
+            st.markdown("""
+                <div style='
+                    display: flex;
+                    justify-content: space-between;
+                    margin-top: 30px;
+                    gap: 20px;
+                '>
+                    <div style='
+                        background: linear-gradient(135deg, #4158D0 0%, #C850C0 100%);
+                        border-radius: 15px;
+                        padding: 20px;
+                        flex: 1;
+                        text-align: center;
+                        color: white;
+                    '>
+                        <h3 style='font-size: 16px; margin: 0;'>Taxa de Empregabilidade</h3>
+                        <h2 style='font-size: 28px; margin: 10px 0;'>{:.1f}%</h2>
+                        <p style='margin: 0; font-size: 14px;'>{} de {} alunos</p>
+                    </div>
+                    <div style='
+                        background: linear-gradient(135deg, #00B4DB 0%, #0083B0 100%);
+                        border-radius: 15px;
+                        padding: 20px;
+                        flex: 1;
+                        text-align: center;
+                        color: white;
+                    '>
+                        <h3 style='font-size: 16px; margin: 0;'>Taxa Einstein</h3>
+                        <h2 style='font-size: 28px; margin: 10px 0;'>{:.1f}%</h2>
+                        <p style='margin: 0; font-size: 14px;'>{} contratados</p>
+                    </div>
+                    <div style='
+                        background: linear-gradient(135deg, #FF416C 0%, #FF4B2B 100%);
+                        border-radius: 15px;
+                        padding: 20px;
+                        flex: 1;
+                        text-align: center;
+                        color: white;
+                    '>
+                        <h3 style='font-size: 16px; margin: 0;'>Não Empregados</h3>
+                        <h2 style='font-size: 28px; margin: 10px 0;'>{:.1f}%</h2>
+                        <p style='margin: 0; font-size: 14px;'>{} alunos</p>
+                    </div>
+                </div>
+            """.format(
+                (dados['empregados']/dados['total_alunos']*100),
+                dados['empregados'],
+                dados['total_alunos'],
+                (dados['einstein']/dados['total_alunos']*100),
+                dados['einstein'],
+                (dados['nao_empregados']/dados['total_alunos']*100),
+                dados['nao_empregados']
+            ), unsafe_allow_html=True)
+            
+            # Dados detalhados em um expander
+            with st.expander(f"Ver Dados Detalhados - {turma_selecionada}", True):
+                st.dataframe(df)
+                
+                # Botões de download
+                col1, col2 = st.columns(2)
+                
+                with col1:
+                    # Botão de download CSV
+                    csv = df.to_csv(index=False).encode('utf-8')
+                    st.download_button(
+                        "📥 Download dos Dados (CSV)",
+                        csv,
+                        f"dados_{turma_selecionada.lower().replace(' ', '_')}.csv",
+                        "text/csv",
+                        key='download-csv',
+                        help="Clique para baixar os dados em formato CSV",
+                        use_container_width=True
+                    )
+                
+                with col2:
+                    # Botão de download PPT
+                    ppt_buffer = create_ppt(dados, turma_selecionada)
+                    st.download_button(
+                        "🎯 Download Apresentação (PPT)",
+                        ppt_buffer,
+                        f"apresentacao_{turma_selecionada.lower().replace(' ', '_')}.pptx",
+                        "application/vnd.openxmlformats-officedocument.presentationml.presentation",
+                        key='download-ppt',
+                        help="Clique para baixar a apresentação em PowerPoint",
+                        use_container_width=True
+                    )
 
 except FileNotFoundError:
     st.error(f"📁 Arquivo não encontrado para a turma {turma_selecionada}!")
